@@ -1,7 +1,7 @@
 # indices-multi-deprivation-blueprint
 [![Tymly Blueprint](https://img.shields.io/badge/tymly-blueprint-blue.svg)](https://tymly.io/)
 [![npm (scoped)](https://img.shields.io/npm/v/@wmfs/indices-multi-deprivation-blueprint.svg)](https://www.npmjs.com/package/@wmfs/indices-multi-deprivation-blueprint)
-[![Build Status](https://travis-ci.org/wmfs/indices-multi-deprivation-blueprint.svg?branch=master)](https://travis-ci.org/wmfs/indices-multi-deprivation-blueprint)
+[![CircleCI](https://circleci.com/gh/wmfs/indices-multi-deprivation-blueprint.svg?style=svg)](https://circleci.com/gh/wmfs/indices-multi-deprivation-blueprint)
 [![codecov](https://codecov.io/gh/wmfs/indices-multi-deprivation-blueprint/branch/master/graph/badge.svg)](https://codecov.io/gh/wmfs/indices-multi-deprivation-blueprint)
 [![CodeFactor](https://www.codefactor.io/repository/github/wmfs/indices-multi-deprivation-blueprint/badge)](https://www.codefactor.io/repository/github/wmfs/indices-multi-deprivation-blueprint)
 [![Dependabot badge](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://dependabot.com/)
