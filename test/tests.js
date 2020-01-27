@@ -100,7 +100,7 @@ describe('data import', function () {
 
   it('Should be clean up the database', function (done) {
     client.query(
-      `DELETE FROM dclg.imd WHERE lsoa_code_2011::text LIKE '123456789%';`,
+      'DELETE FROM dclg.imd WHERE lsoa_code_2011::text LIKE \'123456789%\';',
       function (err, result) {
         if (err) {
           done(err)
