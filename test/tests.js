@@ -23,8 +23,8 @@ describe('data import', function () {
     }
   })
 
-  it('should startup tymly', function (done) {
-    tymly.boot(
+  it('should startup tymly', async () => {
+    const tymlyServices = await tymly.boot(
       {
         pluginPaths: [
           require.resolve('@wmfs/tymly-pg-plugin'),
@@ -34,37 +34,31 @@ describe('data import', function () {
           path.resolve(__dirname, './../')
         ],
         config: {}
-      },
-      function (err, tymlyServices) {
-        expect(err).to.eql(null)
-        tymlyService = tymlyServices.tymly
-        statebox = tymlyServices.statebox
-        client = tymlyServices.storage.client
-        done()
       }
     )
+
+    tymlyService = tymlyServices.tymly
+    statebox = tymlyServices.statebox
+    client = tymlyServices.storage.client
   })
 
-  it('should create and populate the dclg.imd database table', function (done) {
-    statebox.startExecution(
+  it('create and populate the dclg.imd table', async () => {
+    const executionDescription = await statebox.startExecution(
       {
         sourceDir: path.resolve(__dirname, './fixtures/input')
       }, // input
       STATE_MACHINE_NAME, // state machine name
       {
         sendResponse: 'COMPLETE'
-      }, // options
-      function (err, executionDescription) {
-        expect(err).to.eql(null)
-        expect(executionDescription.status).to.eql('SUCCEEDED')
-        expect(executionDescription.currentStateName).to.eql('ImportingCsvFiles')
-        done()
-      }
+      } // options
     )
+
+    expect(executionDescription.status).to.eql('SUCCEEDED')
+    expect(executionDescription.currentStateName).to.eql('ImportingCsvFiles')
   })
 
-  it('Should be the correct data in the database', function (done) {
-    client.query(
+  it('verify data in the table', async () => {
+    const result = await client.query(
       'select lsoa_code_2011, lsoa_name_2011, local_authority_district_code_2013, local_authority_district_name_2013 ' +
       'index_of_multiple_deprivation_score, index_of_multiple_deprivation_rank, index_of_multiple_deprivation_decile, ' +
       'income_score, income_rank, income_decile, employment_score, employment_rank, employment_decile, ' +
@@ -82,51 +76,32 @@ describe('data import', function () {
       'wider_barriers_subdomain_decile, indoors_subdomain_score, indoors_subdomain_rank, indoors_subdomain_decile, ' +
       'outdoors_subdomain_score, outdoors_subdomain_rank, outdoors_subdomain_decile, total_population_mid_2012, ' +
       'dependent_children_aged_015_mid_2012, population_aged_1659_mid_2012, older_population_aged_60_and_over_mid_2012, ' +
-      'working_age_population_185964 from dclg.imd order by lsoa_code_2011;',
-      function (err, result) {
-        if (err) {
-          done(err)
-        } else {
-          console.log(result)
-          expect(result.rowCount).to.eql(9)
-          expect(result.rows[0].lsoa_code_2011).to.eql('1234567890')
-          expect(result.rows[2].lsoa_code_2011).to.eql('1234567892')
-          expect(result.rows[7].lsoa_code_2011).to.eql('1234567897')
-          done()
-        }
-      }
+      'working_age_population_185964 from dclg.imd order by lsoa_code_2011;'
     )
+
+    expect(result.rowCount).to.eql(9)
+    expect(result.rows[0].lsoa_code_2011).to.eql('1234567890')
+    expect(result.rows[2].lsoa_code_2011).to.eql('1234567892')
+    expect(result.rows[7].lsoa_code_2011).to.eql('1234567897')
   })
 
-  it('Should be clean up the database', function (done) {
-    client.query(
-      'DELETE FROM dclg.imd WHERE lsoa_code_2011::text LIKE \'123456789%\';',
-      function (err, result) {
-        if (err) {
-          done(err)
-        } else {
-          expect(result.rowCount).to.eql(9)
-          done()
-        }
-      }
+  it('clean up the table', async () => {
+    const result = await client.query(
+      'DELETE FROM dclg.imd WHERE lsoa_code_2011::text LIKE \'123456789%\';'
     )
+
+    expect(result.rowCount).to.eql(9)
   })
 
-  it('Should find a now empty database', function (done) {
-    client.query(
-      'select * from dclg.imd;',
-      function (err, result) {
-        if (err) {
-          done(err)
-        } else {
-          expect(result.rows).to.eql([])
-          done()
-        }
-      }
+  it('verify empty table', async () => {
+    const result = await client.query(
+      'select * from dclg.imd;'
     )
+
+    expect(result.rows).to.eql([])
   })
 
-  it('should shutdown Tymly', async () => {
+  after('shutdown Tymly', async () => {
     await tymlyService.shutdown()
   })
 })
