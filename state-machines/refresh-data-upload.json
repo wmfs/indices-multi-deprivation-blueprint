@@ -1,0 +1,36 @@
+{
+  "Comment": "Refresh IMD Data via CSV File",
+  "name": "Refresh IMD Data via CSV File",
+  "version": "1.0",
+  "categories": [
+    "imd"
+  ],
+  "StartAt": "ImportDirectory",
+  "States": {
+    "ImportDirectory": {
+      "Type": "Task",
+      "Resource": "module:getConfiguredRegistryKey",
+      "ResourceConfig": {
+        "key": "dclg_imdImportDirectory"
+      },
+      "Parameters": {
+        "defaultValue": false
+      },
+      "ResultPath": "$.importDirectory",
+      "Next": "Process"
+    },
+    "Process": {
+      "Type": "Task",
+      "Resource": "function:dclg_refreshDataUpload",
+      "End": true
+    }
+  },
+  "restrictions": [
+    {
+      "roleId": "dclg_imdImporter",
+      "allows": [
+        "*"
+      ]
+    }
+  ]
+}

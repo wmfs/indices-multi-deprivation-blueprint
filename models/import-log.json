@@ -1,0 +1,31 @@
+{
+  "title": "IMD Import Log",
+  "description": "IMD Import Log",
+  "type": "object",
+  "properties": {
+    "serverFilename": {
+      "type": "string"
+    },
+    "clientFilename": {
+      "type": "string"
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "complete": {
+      "type": "boolean"
+    },
+    "totalRowsInserted": {
+      "type": "integer"
+    },
+    "totalRows": {
+      "type": "integer"
+    }
+  }
+}
+

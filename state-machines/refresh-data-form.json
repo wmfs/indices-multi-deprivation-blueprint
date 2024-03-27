@@ -1,0 +1,44 @@
+{
+  "Comment": "Refresh IMD Data via CSV File",
+  "name": "Refresh IMD Data via CSV File",
+  "version": "1.0",
+  "categories": [
+    "imd"
+  ],
+  "instigators": [
+    "user"
+  ],
+  "StartAt": "LoadImportHistory",
+  "States": {
+    "LoadImportHistory": {
+      "Type": "Task",
+      "Resource": "module:finding",
+      "ResourceConfig": {
+        "modelId": "dclg_importLog",
+        "filter": {
+          "orderBy": ["-modified"]
+        }
+      },
+      "ResultPath": "$.history",
+      "Next": "FillForm"
+    },
+    "FillForm": {
+      "Type": "Task",
+      "Resource": "module:awaitingHumanInput",
+      "ResourceConfig": {
+        "uiType": "form",
+        "uiName": "dclg_refreshDataForm",
+        "dataPath": "$"
+      },
+      "End": true
+    }
+  },
+  "restrictions": [
+    {
+      "roleId": "dclg_imdImporter",
+      "allows": [
+        "*"
+      ]
+    }
+  ]
+}

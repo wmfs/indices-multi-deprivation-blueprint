@@ -1,0 +1,14 @@
+{
+  "label": "IMD Import Directory",
+  "description": "IMD Import Directory",
+  "schema": {
+    "properties": {
+      "environmentVariableName": "IMD_IMPORT_DIRECTORY",
+      "value": {
+        "type": "string",
+        "default": "Please insert value here"
+      }
+    },
+    "required": ["value"]
+  }
+}

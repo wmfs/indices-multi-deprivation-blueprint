@@ -1,0 +1,63 @@
+{
+  "templateMeta": {
+    "name": "imd-refresh-data-result",
+    "title": "Refresh IMD Data via CSV File",
+    "category": "imd"
+  },
+  "type": "AdaptiveCard",
+  "body": [
+    {
+      "type": "Jumbotron",
+      "title": "Refresh IMD Data via CSV File"
+    },
+    {
+      "type": "Container",
+      "color": "warning",
+      "spacing": "small",
+      "showWhen": "!data.complete",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Import in progress"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "color": "good",
+      "spacing": "small",
+      "showWhen": "data.complete",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Import complete"
+        }
+      ]
+    },
+    {
+      "showWhen": "data.progress",
+      "type": "Container",
+      "spacing": "none",
+      "bordered": true,
+      "shadowed": true,
+      "items": [
+        {
+          "type": "LinearProgressBar",
+          "progressPath": "data.progress"
+        },
+        {
+          "type": "TextBlock",
+          "text": "{{ data.totalRowsInserted }} out of {{ data.totalRows }} rows inserted."
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Cancel",
+      "title": "Close"
+    }
+  ],
+  "$schema": "https://raw.githubusercontent.com/wmfs/cardscript-schema/master/lib/schema.json",
+  "version": "1.0"
+}

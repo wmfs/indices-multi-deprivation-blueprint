@@ -1,0 +1,24 @@
+{
+  "Comment": "Refresh IMD Data via CSV File",
+  "name": "Refresh IMD Data via CSV File",
+  "version": "1.0",
+  "categories": [
+    "imd"
+  ],
+  "StartAt": "Process",
+  "States": {
+    "Process": {
+      "Type": "Task",
+      "Resource": "function:dclg_refreshDataImport",
+      "End": true
+    }
+  },
+  "restrictions": [
+    {
+      "roleId": "dclg_imdImporter",
+      "allows": [
+        "*"
+      ]
+    }
+  ]
+}

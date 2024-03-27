@@ -1,0 +1,44 @@
+{
+  "Comment": "Refresh IMD Data via CSV File",
+  "name": "Refresh IMD Data via CSV File",
+  "version": "1.0",
+  "categories": [
+    "imd"
+  ],
+  "StartAt": "SetLauncher",
+  "States": {
+    "SetLauncher": {
+      "Type": "Pass",
+      "Parameters": {
+        "callbackPath": "requiredHumanInput.data"
+      },
+      "ResultPath": "$.launcher",
+      "Next": "Import"
+    },
+    "Import": {
+      "Type": "Task",
+      "Resource": "module:launchStateMachine",
+      "ResourceConfig": { "stateMachine": "dclg_refreshDataImport_1_0" },
+      "Next": "ShowResults"
+    },
+    "ShowResults": {
+      "Type": "Task",
+      "Resource": "module:awaitingHumanInput",
+      "ResourceConfig": {
+        "uiType": "progress",
+        "uiName": "dclg_refreshDataResult",
+        "uiRefresh": 10,
+        "dataPath": "$"
+      },
+      "End": true
+    }
+  },
+  "restrictions": [
+    {
+      "roleId": "dclg_imdImporter",
+      "allows": [
+        "*"
+      ]
+    }
+  ]
+}
