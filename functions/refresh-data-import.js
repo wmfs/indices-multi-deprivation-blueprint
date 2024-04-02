@@ -9,6 +9,7 @@ module.exports = function () {
     } = env.bootedServices.storage
 
     const {
+      dclg_imd: imdModel,
       dclg_importLog: logModel
     } = models
 
@@ -27,6 +28,7 @@ module.exports = function () {
       totalRejected,
       startTime: new Date(),
       totalRowsInserted: 0,
+      totalRowsRejected: totalRejected,
       progress: 0,
       complete: false
     }
@@ -36,8 +38,8 @@ module.exports = function () {
 
     await client.query('TRUNCATE TABLE dclg.imd;')
 
-    for (const { lsoaCode2011, indexOfMultipleDeprivationDecile } of rows) {
-      await client.query(`INSERT INTO dclg.imd (lsoa_code_2011, index_of_multiple_deprivation_decile) VALUES ('${lsoaCode2011}', '${indexOfMultipleDeprivationDecile}');`)
+    for (const row of rows) {
+      await imdModel.create(row)
 
       importLog.totalRowsInserted++
 

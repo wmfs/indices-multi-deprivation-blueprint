@@ -23,6 +23,9 @@
     "totalRowsInserted": {
       "type": "integer"
     },
+    "totalRowsRejected": {
+      "type": "integer"
+    },
     "totalRows": {
       "type": "integer"
     }

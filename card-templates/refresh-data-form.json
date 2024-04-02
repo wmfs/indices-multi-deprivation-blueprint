@@ -7,10 +7,6 @@
   "type": "AdaptiveCard",
   "body": [
     {
-      "type": "TextBlock",
-      "text": "{{ data }}"
-    },
-    {
       "type": "Container",
       "spacing": "none",
       "items": [
@@ -133,7 +129,8 @@
         "importDirectory":  "$.importDirectory",
         "serverFilename": "$.serverFilename",
         "clientFilename": "$.clientFilename",
-        "totalRows": "$.totalRows"
+        "totalRows": "$.totalRows",
+        "rows": "$.rows"
       }
     }
   ],

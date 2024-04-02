@@ -45,7 +45,8 @@ describe('IMD tests', function () {
           require.resolve('@wmfs/tymly-test-helpers/plugins/mock-rest-client-plugin'),
           require.resolve('@wmfs/tymly-test-helpers/plugins/mock-os-places-plugin'),
           require.resolve('@wmfs/tymly-test-helpers/plugins/allow-everything-rbac-plugin'),
-          require.resolve('@wmfs/tymly-cardscript-plugin'),
+          // require.resolve('@wmfs/tymly-cardscript-plugin'),
+          path.join(__dirname, '../../../plugins/tymly-cardscript-plugin'),
           require.resolve('@wmfs/tymly-pg-plugin')
         ],
         blueprintPaths: [
@@ -86,6 +87,7 @@ describe('IMD tests', function () {
     expect(rows.length).to.eql(1)
 
     expect(rows[0].totalRowsInserted).to.eql(8)
+    expect(rows[0].totalRowsRejected).to.eql(2)
     expect(rows[0].totalRows).to.eql(8)
   })
 
