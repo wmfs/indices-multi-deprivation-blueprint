@@ -7,13 +7,23 @@
   "type": "AdaptiveCard",
   "body": [
     {
-      "type": "Jumbotron",
-      "title": "Refresh IMD Data via CSV File"
+      "type": "Container",
+      "color": "accent",
+      "spacing": "none",
+      "items": [
+        {
+          "type": "TextBlock",
+          "weight": "bolder",
+          "size": "medium",
+          "spacing": "none",
+          "text": "Refresh Indices of Multiple Deprivation Data"
+        }
+      ]
     },
     {
       "type": "Container",
       "color": "warning",
-      "spacing": "small",
+      "spacing": "none",
       "showWhen": "!data.complete",
       "items": [
         {
@@ -25,7 +35,7 @@
     {
       "type": "Container",
       "color": "good",
-      "spacing": "small",
+      "spacing": "none",
       "showWhen": "data.complete",
       "items": [
         {
@@ -38,8 +48,6 @@
       "showWhen": "data.progress",
       "type": "Container",
       "spacing": "none",
-      "bordered": true,
-      "shadowed": true,
       "items": [
         {
           "type": "LinearProgressBar",
@@ -47,7 +55,7 @@
         },
         {
           "type": "TextBlock",
-          "text": "{{ data.totalRowsInserted }} out of {{ data.totalRows }} rows inserted."
+          "text": "{{ data.totalRowsInserted }} out of {{ data.totalRows }} rows inserted"
         }
       ]
     }
