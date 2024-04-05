@@ -126,9 +126,9 @@
           "field": "idx"
         },
         {
-          "title": "Invalid values",
-          "field": "invalidProperties",
-          "format": "item.invalidProperties.join(', ')"
+          "title": "Reasons",
+          "field": "rejectionReasons",
+          "format": "item.rejectionReasons.join(', ')"
         }
       ]
     }

@@ -71,10 +71,10 @@ describe('IMD tests', function () {
     expect(uploadResult.totalRejected).to.eql(2)
 
     expect(uploadResult.rejected[0].idx).to.eql(6)
-    expect(uploadResult.rejected[0].invalidProperties).to.eql(['LSOA code'])
+    expect(uploadResult.rejected[0].rejectionReasons).to.eql(['LSOA code (2011) is not provided.'])
 
     expect(uploadResult.rejected[1].idx).to.eql(10)
-    expect(uploadResult.rejected[1].invalidProperties).to.eql(['Decile'])
+    expect(uploadResult.rejected[1].rejectionReasons).to.eql(['Index of Multiple Deprivation (IMD) Decile (where 1 is most deprived 10% of LSOAs) must be an integer.'])
   })
 
   it('should run the state machine to import the uploaded data', async () => {
