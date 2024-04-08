@@ -45,7 +45,7 @@ describe('IMD tests', function () {
           require.resolve('@wmfs/tymly-test-helpers/plugins/mock-rest-client-plugin'),
           require.resolve('@wmfs/tymly-test-helpers/plugins/mock-os-places-plugin'),
           require.resolve('@wmfs/tymly-test-helpers/plugins/allow-everything-rbac-plugin'),
-          // require.resolve('@wmfs/tymly-cardscript-plugin'),
+          require.resolve('@wmfs/tymly-cardscript-plugin'),
           path.join(__dirname, '../../../plugins/tymly-cardscript-plugin'),
           require.resolve('@wmfs/tymly-pg-plugin')
         ],
