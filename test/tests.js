@@ -2,19 +2,33 @@
 
 'use strict'
 
-const tymly = require('@wmfs/tymly')
+const chai = require('chai')
+const expect = chai.expect
 const path = require('path')
-const expect = require('chai').expect
+const tymly = require('@wmfs/tymly')
 const process = require('process')
+const runUpload = require('../functions/refresh-data-upload')()
+const runImport = require('../functions/refresh-data-import')()
 
-describe('data import', function () {
+describe('IMD tests', function () {
   this.timeout(process.env.TIMEOUT || 5000)
 
-  const STATE_MACHINE_NAME = 'dclg_refreshFromCsvFile_1_0'
-
+  let bootedServices
   let tymlyService
-  let statebox
   let client
+  let imdModel
+  let importLogModel
+  let uploadResult
+
+  const uploadEvent = {
+    body: {
+      upload: {
+        serverFilename: path.join(__dirname, 'fixtures', 'imd.csv'),
+        clientFilename: path.join(__dirname, 'fixtures', 'imd.csv')
+      }
+    },
+    importDirectory: path.join(__dirname, 'fixtures', 'output')
+  }
 
   before(function () {
     if (process.env.PG_CONNECTION_STRING && !/^postgres:\/\/[^:]+:[^@]+@(?:localhost|127\.0\.0\.1).*$/.test(process.env.PG_CONNECTION_STRING)) {
@@ -23,12 +37,17 @@ describe('data import', function () {
     }
   })
 
-  it('should startup tymly', async () => {
+  it('startup tymly', async () => {
     const tymlyServices = await tymly.boot(
       {
         pluginPaths: [
-          require.resolve('@wmfs/tymly-pg-plugin'),
-          path.resolve(__dirname, '../node_modules/@wmfs/tymly-test-helpers/plugins/allow-everything-rbac-plugin')
+          require.resolve('@wmfs/tymly-test-helpers/plugins/mock-solr-plugin'),
+          require.resolve('@wmfs/tymly-test-helpers/plugins/mock-rest-client-plugin'),
+          require.resolve('@wmfs/tymly-test-helpers/plugins/mock-os-places-plugin'),
+          require.resolve('@wmfs/tymly-test-helpers/plugins/allow-everything-rbac-plugin'),
+          require.resolve('@wmfs/tymly-cardscript-plugin'),
+          path.join(__dirname, '../../../plugins/tymly-cardscript-plugin'),
+          require.resolve('@wmfs/tymly-pg-plugin')
         ],
         blueprintPaths: [
           path.resolve(__dirname, './../')
@@ -37,68 +56,56 @@ describe('data import', function () {
       }
     )
 
+    bootedServices = tymlyServices
     tymlyService = tymlyServices.tymly
-    statebox = tymlyServices.statebox
     client = tymlyServices.storage.client
+    imdModel = tymlyServices.storage.models.dclg_imd
+    importLogModel = tymlyServices.storage.models.dclg_importLog
   })
 
-  it('create and populate the dclg.imd table', async () => {
-    const executionDescription = await statebox.startExecution(
-      {
-        sourceDir: path.resolve(__dirname, './fixtures/input')
-      }, // input
-      STATE_MACHINE_NAME, // state machine name
-      {
-        sendResponse: 'COMPLETE'
-      } // options
-    )
+  it('should run the state machine to upload the CSV file', async () => {
+    uploadResult = await runUpload(uploadEvent)
 
-    expect(executionDescription.status).to.eql('SUCCEEDED')
-    expect(executionDescription.currentStateName).to.eql('ImportingCsvFiles')
+    expect(uploadResult.totalRows).to.eql(8)
+    expect(uploadResult.uploadWarning).to.eql('8 rows to be uploaded but 2 rows were rejected (see below).')
+    expect(uploadResult.totalRejected).to.eql(2)
+
+    expect(uploadResult.rejected[0].idx).to.eql(6)
+    expect(uploadResult.rejected[0].rejectionReasons).to.eql(['LSOA code (2011) is not provided.'])
+
+    expect(uploadResult.rejected[1].idx).to.eql(10)
+    expect(uploadResult.rejected[1].rejectionReasons).to.eql(['Index of Multiple Deprivation (IMD) Decile (where 1 is most deprived 10% of LSOAs) must be an integer.'])
   })
 
-  it('verify data in the table', async () => {
-    const result = await client.query(
-      'select lsoa_code_2011, lsoa_name_2011, local_authority_district_code_2013, local_authority_district_name_2013 ' +
-      'index_of_multiple_deprivation_score, index_of_multiple_deprivation_rank, index_of_multiple_deprivation_decile, ' +
-      'income_score, income_rank, income_decile, employment_score, employment_rank, employment_decile, ' +
-      'education_skills_and_training_score, education_skills_and_training_rank, education_skills_and_training_decile, ' +
-      'health_deprivation_and_disability_score, health_deprivation_and_disability_rank, health_deprivation_and_disability_decile, ' +
-      'crime_score, crime_rank, crime_decile, barriers_to_housing_and_services_score, barriers_to_housing_and_services_rank, ' +
-      'barriers_to_housing_and_services_decile, living_environment_score, living_environment_rank, living_environment_decile, ' +
-      'income_deprivation_affecting_children_index_score, income_deprivation_affecting_children_index_rank, ' +
-      'income_deprivation_affecting_children_index_decile, income_deprivation_affecting_older_people_score, ' +
-      'income_deprivation_affecting_older_people_rank, income_deprivation_affecting_older_people_decile, ' +
-      'children_and_young_people_subdomain_score, children_and_young_people_subdomain_rank, ' +
-      'children_and_young_people_subdomain_decile, adult_skills_subdomain_score, adult_skills_subdomain_rank, ' +
-      'adult_skills_subdomain_decile, geographical_barriers_subdomain_score, geographical_barriers_subdomain_rank, ' +
-      'geographical_barriers_subdomain_decile, wider_barriers_subdomain_score, wider_barriers_subdomain_rank, ' +
-      'wider_barriers_subdomain_decile, indoors_subdomain_score, indoors_subdomain_rank, indoors_subdomain_decile, ' +
-      'outdoors_subdomain_score, outdoors_subdomain_rank, outdoors_subdomain_decile, total_population_mid_2012, ' +
-      'dependent_children_aged_015_mid_2012, population_aged_1659_mid_2012, older_population_aged_60_and_over_mid_2012, ' +
-      'working_age_population_185964 from dclg.imd order by lsoa_code_2011;'
-    )
-
-    expect(result.rowCount).to.eql(9)
-    expect(result.rows[0].lsoa_code_2011).to.eql('1234567890')
-    expect(result.rows[2].lsoa_code_2011).to.eql('1234567892')
-    expect(result.rows[7].lsoa_code_2011).to.eql('1234567897')
+  it('should run the state machine to import the uploaded data', async () => {
+    await runImport(uploadResult, { bootedServices }, {})
   })
 
-  it('clean up the table', async () => {
-    const result = await client.query(
-      'DELETE FROM dclg.imd WHERE lsoa_code_2011::text LIKE \'123456789%\';'
-    )
+  it('should check the imported data log', async () => {
+    const rows = await importLogModel.find({})
 
-    expect(result.rowCount).to.eql(9)
+    expect(rows.length).to.eql(1)
+
+    expect(rows[0].totalRowsInserted).to.eql(8)
+    expect(rows[0].totalRowsRejected).to.eql(2)
+    expect(rows[0].totalRows).to.eql(8)
   })
 
-  it('verify empty table', async () => {
-    const result = await client.query(
-      'select * from dclg.imd;'
-    )
+  it('should check the imported data', async () => {
+    const rows = await imdModel.find({ orderBy: ['lsoaCode2011'] })
 
-    expect(result.rows).to.eql([])
+    expect(rows.length).to.eql(8)
+
+    expect(rows[0].lsoaCode2011).to.eql('E01000003')
+    expect(rows[0].indexOfMultipleDeprivationDecile).to.eql(5)
+
+    expect(rows[7].lsoaCode2011).to.eql('E01033768')
+    expect(rows[7].indexOfMultipleDeprivationDecile).to.eql(1)
+  })
+
+  after('clean up the tables', async () => {
+    await client.query('DROP SCHEMA tymly CASCADE;')
+    await client.query('DROP SCHEMA dclg CASCADE;')
   })
 
   after('shutdown Tymly', async () => {

@@ -1,0 +1,71 @@
+{
+  "templateMeta": {
+    "name": "imd-refresh-data-result",
+    "title": "Refresh IMD Data via CSV File",
+    "category": "imd"
+  },
+  "type": "AdaptiveCard",
+  "body": [
+    {
+      "type": "Container",
+      "color": "accent",
+      "spacing": "none",
+      "items": [
+        {
+          "type": "TextBlock",
+          "weight": "bolder",
+          "size": "medium",
+          "spacing": "none",
+          "text": "Refresh Indices of Multiple Deprivation Data"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "color": "warning",
+      "spacing": "none",
+      "showWhen": "!data.complete",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Import in progress"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "color": "good",
+      "spacing": "none",
+      "showWhen": "data.complete",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "Import complete"
+        }
+      ]
+    },
+    {
+      "showWhen": "data.progress",
+      "type": "Container",
+      "spacing": "none",
+      "items": [
+        {
+          "type": "LinearProgressBar",
+          "progressPath": "data.progress"
+        },
+        {
+          "type": "TextBlock",
+          "text": "{{ data.totalRowsInserted }} out of {{ data.totalRows }} rows inserted"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Cancel",
+      "title": "Close"
+    }
+  ],
+  "$schema": "https://raw.githubusercontent.com/wmfs/cardscript-schema/master/lib/schema.json",
+  "version": "1.0"
+}

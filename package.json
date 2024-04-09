@@ -19,7 +19,9 @@
   "bugs": {
     "url": "https://github.com/wmfs/indices-multi-deprivation-blueprint/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "csv-parse": "5.5.5"
+  },
   "devDependencies": {
     "chai": "4.4.1",
     "codecov": "3.8.3",
@@ -33,9 +35,10 @@
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/git": "10.0.1",
     "@semantic-release/exec": "6.0.3",
-    "@wmfs/tymly": "1.224.2",
-    "@wmfs/tymly-pg-plugin": "1.258.0",
-    "@wmfs/tymly-test-helpers": "1.22.2"
+    "@wmfs/tymly": "1.263.0",
+    "@wmfs/tymly-pg-plugin": "1.291.0",
+    "@wmfs/tymly-test-helpers": "1.22.2",
+    "@wmfs/tymly-cardscript-plugin": "1.46.0"
   },
   "scripts": {
     "lint": "standard",
