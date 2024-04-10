@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/wmfs/indices-multi-deprivation-blueprint/compare/v1.2.0...v1.3.0) (2024-04-10)
+
+
+### Features
+
+* **(pin 262) crr dd:** [sc-24139] Refresh Index of Multiple Deprivation ([#792](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/792)) ([0c03097](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/0c03097c17425908028f54daa103389b7d5a4bc2))
+
 # [1.2.0](https://github.com/wmfs/indices-multi-deprivation-blueprint/compare/v1.1.0...v1.2.0) (2023-09-19)
 
 
