@@ -1,3 +1,14 @@
+## [1.7.0](https://github.com/wmfs/indices-multi-deprivation-blueprint/compare/v1.6.0...v1.7.0) (2025-07-18)
+
+### Build system dependencies :hammer:
+
+* **deps-dev:** update dependency @wmfs/tymly to v1.314.0 ([#912](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/912)) ([5d4a958](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/5d4a958e0c4f882b9960966b115e5d47166aef6d))
+* **deps-dev:** update dependency @wmfs/tymly to v1.315.0 ([#915](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/915)) ([d8ebcaa](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/d8ebcaa2255c82db895af1f83afb475407268935))
+* **deps-dev:** update dependency @wmfs/tymly-pg-plugin to v1.341.0 ([#913](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/913)) ([0c4da86](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/0c4da86eb0932db725f5699172f5a61857096ac1))
+* **deps-dev:** update dependency conventional-changelog-conventionalcommits to v9.1.0 ([#910](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/910)) ([f0c3f49](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/f0c3f4996ca45d774876dd329e57347d95772934))
+* **deps-dev:** update dependency semantic-release to v24.2.7 ([#914](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/914)) ([4c27908](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/4c2790803f6ccc266942d4573c59ee7474d52ae2))
+* **deps:** update dependency csv-parse to v6.1.0 ([#916](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/916)) ([92747f1](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/92747f11a85eb3654e35f0046ef9aa03dd2a6fa0))
+
 ## [1.6.0](https://github.com/wmfs/indices-multi-deprivation-blueprint/compare/v1.5.0...v1.6.0) (2025-07-11)
 
 ### Build system dependencies :hammer:
