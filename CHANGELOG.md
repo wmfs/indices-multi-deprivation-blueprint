@@ -1,3 +1,20 @@
+## [1.8.0](https://github.com/wmfs/indices-multi-deprivation-blueprint/compare/v1.7.0...v1.8.0) (2025-10-21)
+
+### Build system dependencies :hammer:
+
+* **deps-dev:** update dependency @semantic-release/release-notes-generator to v14.1.0 ([#919](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/919)) ([253e44d](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/253e44dc282c27d4258cafce065dc3db4e5597f1))
+* **deps-dev:** update dependency chai to v6 ([#917](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/917)) ([2b62c36](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/2b62c36335ac81724ed578fd9d2fb7bcc0ec9d73))
+* **deps-dev:** update dependency chai to v6.2.0 ([#923](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/923)) ([62232c7](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/62232c793bb3d14518f0c21ea8f4fd3c8a2758d0))
+* **deps-dev:** update dependency debug to v4.4.3 ([#921](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/921)) ([01b7c90](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/01b7c90e2a4514388e94fb98895812efee6b6f50))
+* **deps-dev:** update dependency mocha to v11.7.2 ([#918](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/918)) ([96761ca](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/96761ca220ac7f15013fbe88a16c91000cb6b63f))
+* **deps-dev:** update dependency mocha to v11.7.3 ([#924](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/924)) ([7770471](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/77704717af9163e51d5e14d4b1442b99ad974396))
+* **deps-dev:** update dependency mocha to v11.7.4 ([#925](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/925)) ([f75856d](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/f75856ddfd169b911ab54d3fc28597cc9ea784b4))
+* **deps-dev:** update dependency semantic-release to v24.2.8 ([#920](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/920)) ([a91802c](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/a91802cf8064575164313a6b77b8cee0e37b68a9))
+* **deps-dev:** update dependency semantic-release to v24.2.9 ([#922](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/922)) ([23fe688](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/23fe688196cab29c6623bb8cbacac29c98e266b2))
+* **deps-dev:** update dependency semantic-release to v25 ([#926](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/926)) ([a7c816e](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/a7c816e7fd934e086e6bd717930f97b58e3de2f2))
+* **deps-dev:** update dependency semantic-release to v25.0.1 ([#927](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/927)) ([e8fdf13](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/e8fdf138ad1259e22b60e75aadc2041e5e231163))
+* **deps:** revert chai to non-esm ([026a676](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/026a6763c53247da547528f014995510441c57d4))
+
 ## [1.7.0](https://github.com/wmfs/indices-multi-deprivation-blueprint/compare/v1.6.0...v1.7.0) (2025-07-18)
 
 ### Build system dependencies :hammer:
