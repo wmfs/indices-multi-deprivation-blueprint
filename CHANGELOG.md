@@ -1,3 +1,5 @@
+## [1.8.1](https://github.com/wmfs/indices-multi-deprivation-blueprint/compare/v1.8.0...v1.8.1) (2026-08-12)
+
 ## [1.8.0](https://github.com/wmfs/indices-multi-deprivation-blueprint/compare/v1.7.0...v1.8.0) (2025-10-21)
 
 ### Build system dependencies :hammer:
