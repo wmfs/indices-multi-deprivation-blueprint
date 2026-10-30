@@ -1,3 +1,27 @@
+## [1.9.0](https://github.com/wmfs/indices-multi-deprivation-blueprint/compare/v1.8.1...v1.9.0) (2026-10-30)
+
+### Build system dependencies :hammer:
+
+* **deps-dev:** fix conventionalcommit versions [sc-34125] ([7f216de](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/7f216de4a38d7e61299ce7432b3620394be4022d))
+* **deps-dev:** update [@wmfs](https://github.com/wmfs) packages ([#974](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/974)) ([53f99c1](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/53f99c109e1e4daa04b04ed37a6925ca16c01640))
+* **deps-dev:** update dependency @wmfs/tymly to v1.317.1 ([#958](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/958)) ([e629e02](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/e629e02104a03f2ac1ff64ae30f22fea7afe976c))
+* **deps-dev:** update dependency @wmfs/tymly-cardscript-plugin to v1.53.1 ([#959](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/959)) ([c80bcee](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/c80bcee34cc1b171c33d410f03bbf54fdba36678))
+* **deps-dev:** update dependency @wmfs/tymly-pg-plugin to v1.348.1 ([#960](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/960)) ([726261f](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/726261f7f6134e5fad06c2ee374dab422f76a4aa))
+* **deps-dev:** update dependency @wmfs/tymly-test-helpers to v1.24.1 ([#961](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/961)) ([e2aaff5](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/e2aaff512077362247195f01eef94fae64b2f80c))
+* **deps-dev:** update dependency conventional-changelog-conventionalcommits to v10.4.0 ([#962](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/962)) ([5142736](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/51427369bf2cb5521d5a1603f266aa6104d99a29))
+* **deps-dev:** update dependency conventional-changelog-conventionalcommits to v10.4.1 ([#969](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/969)) ([2d8510e](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/2d8510e770338fcd30db49ab71c472965df14dc7))
+* **deps-dev:** update dependency mocha to v12 ([#963](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/963)) ([6cd7f76](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/6cd7f76b6457f3996ec0be58ea4d24dafe34d13f))
+* **deps-dev:** update dependency mocha to v12.0.1 ([#966](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/966)) ([550ebe6](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/550ebe6dce26ff2e9f6510582e4f273cb065900f))
+* **deps-dev:** update dependency mocha to v12.0.2 ([#967](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/967)) ([7194736](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/7194736e47b7a2aaa0616f578c103de1e38bbe41))
+* **deps-dev:** update dependency mocha to v12.0.3 ([#968](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/968)) ([0a9ca8a](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/0a9ca8a3ebef2172cdd98a8af824919a3866fea5))
+* **deps:** Add missing dependencies [sc-33852] ([#970](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/970)) ([e49724a](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/e49724ad99c0173428bf8946a74dd627b75dc9db))
+* **deps:** update dependency csv-parse to v7 [security] ([#965](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/965)) ([225f7ba](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/225f7ba9db585e64adf12a12825cf716c22b3d19))
+
+### CICD Configuration Changes :construction_worker:
+
+* use github-app-token orb for release token [sc-34101] ([#975](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/975)) ([dead079](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/dead0795577f1bd9cae64477c66643f3303fd51d))
+* use shared renovate preset [sc-34117] ([#973](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/973)) ([a6f6785](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/a6f67858b832e3a751f4f9e61271d33e098e2bf4))
+
 ## [1.8.1](https://github.com/wmfs/indices-multi-deprivation-blueprint/compare/v1.8.0...v1.8.1) (2026-08-12)
 
 ## [1.8.0](https://github.com/wmfs/indices-multi-deprivation-blueprint/compare/v1.7.0...v1.8.0) (2025-10-21)
