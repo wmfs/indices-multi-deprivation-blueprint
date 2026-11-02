@@ -1,3 +1,10 @@
+## [1.10.0](https://github.com/wmfs/indices-multi-deprivation-blueprint/compare/v1.9.0...v1.10.0) (2026-11-02)
+
+### Build system dependencies :hammer:
+
+* **deps-dev:** update dependency @wmfs/tymly-cardscript-plugin to v1.54.0 ([#976](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/976)) ([b08cc8c](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/b08cc8cce47d6b6183938126f5bf89e5ab0742ae))
+* **deps:** update dependency csv-parse to v7.0.3 ([#977](https://github.com/wmfs/indices-multi-deprivation-blueprint/issues/977)) ([f13dbda](https://github.com/wmfs/indices-multi-deprivation-blueprint/commit/f13dbda8c01045e81c756af0557b4a3b7512c25a))
+
 ## [1.9.0](https://github.com/wmfs/indices-multi-deprivation-blueprint/compare/v1.8.1...v1.9.0) (2026-10-30)
 
 ### Build system dependencies :hammer:
